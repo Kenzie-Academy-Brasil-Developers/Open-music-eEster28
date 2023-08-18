@@ -2,7 +2,6 @@ import { products, categories } from './productsData.js'
 
 /* Desenvolva sua lógica aqui ... */
 
-
 function createCard(product) {
     /* Trabalhe sua lógica aqui */
 
@@ -16,8 +15,8 @@ function createCard(product) {
 
     const informationProduct = document.createElement('p')
     informationProduct.classList.add('information__product')
-    informationProduct.innerText = `${product.band}${product.year}` 
-    
+    informationProduct.innerText = `${product.band}${product.year}`
+
 
     const titleProduct = document.createElement('h2')
     titleProduct.classList.add('title__product')
@@ -40,11 +39,12 @@ function createCard(product) {
 }
 
 function rederButtons(array) {
-    const controlConteiner= document.querySelector('.music__genres')
+    const controlConteiner = document.querySelector('.music__genres')
 
     array.forEach(element => {
         const conteiner = document.createElement("li")
         const buttonMusicGenres = document.createElement('button')
+        buttonMusicGenres.classList.add('button__music--generes')
         buttonMusicGenres.innerText = element
 
         conteiner.appendChild(buttonMusicGenres)
@@ -53,8 +53,9 @@ function rederButtons(array) {
     return controlConteiner
 }
 
-function rederCard(array){
+function rederCard(array) {
     const containerCard = document.querySelector('.container__card')
+    containerCard.innerHTML = ""
 
     array.forEach(element => {
         const card = createCard(element)
@@ -63,5 +64,40 @@ function rederCard(array){
     return containerCard
 }
 
+function filteringCategory(products, categories) {
+
+    const buttonMusicGenres = document.querySelectorAll('.button__music--generes')
+
+    buttonMusicGenres.forEach(button => {
+        button.addEventListener('click', (element) => {
+            const travelingCategories = categories.findIndex(a => a === element.target.innerText)
+            const filterCategories = products.filter(a => a.category === travelingCategories)
+
+            if(travelingCategories === 0){
+               return rederCard(products) 
+            }else{
+                return rederCard(filterCategories)
+            }
+        })
+    });
+
+}
+
+function filterPrice(product){
+    const inputFilter= document.querySelector('#rangeInput')
+
+    inputFilter.addEventListener('input', () => {
+        const paragraph = document.querySelector('.filter__paragraph')
+        const productsFilter= product.filter((element) => element.price <= inputFilter.value)
+
+        paragraph.innerText= `Até R$ ${inputFilter.value}`
+        return rederCard(productsFilter)
+
+    })
+
+}
+
 rederButtons(categories)
 rederCard(products)
+filteringCategory(products, categories)
+filterPrice(products)
