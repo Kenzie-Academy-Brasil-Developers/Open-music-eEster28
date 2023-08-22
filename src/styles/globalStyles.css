@@ -17,6 +17,17 @@
   --color-actived-fixed: #2b2f33;
   --color-white-fixed: #ffffff;
 
+  --color-title-1:#15171a ;
+  --color-tiltle2:#212529;
+  --color-text-1: #f8f9fa ;
+  --color-text-2:#2b2f33 ;
+  --color-text-focus:#f8f9fa ;
+  --background-color-buttons:#f8f9fa ;
+  --background-color-buttons-hover:#dee2e6;
+  --background-color-buttons-focus:#212529; 
+  --background-color-card:#f1f3f5 ;
+  --color-boder:#212529;
+
   --font-1: 1.75rem;
   --font-2: 1rem;
   --font-3: 0.875rem;
@@ -40,6 +51,21 @@
   --color-disable-fixed: #212529;
   --color-actived-fixed: #2b2f33;
   --color-white-fixed: #ffffff;
+
+  --color-title-1:#fdfeff;
+  --color-tiltle2:#f8f9fa;
+  --color-text-1: #212529;
+  --color-text-2:#f1f3f5 ;
+  --color-text-focus:#f8f9fa ;
+  --background-color-buttons:#212529 ;
+  --background-color-buttons-focus:#212529;
+  --background-color-buttons-hover:#15171a;
+  --background-color-card:#2b2f33;
+  --color-boder:#f8f9fa;
+}
+html{
+  display: flex;
+  justify-content: center;
 }
 
 body {
@@ -48,6 +74,6 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: var(--color-grey-9);
   margin: 0px 30px 0px 30px;
-
-
+  width: 100%;
+  max-width: 800px;
 }

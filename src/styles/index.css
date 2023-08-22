@@ -9,7 +9,7 @@
 }
 
 .header__h1 {
-    color: var(--color-disable-fixed);
+    color: var(--color-title-1);
     font-size: var(--font-1);
     font-weight: bold;
 }
@@ -18,9 +18,13 @@ button {
     border: none;
     border-radius: var(--radius-1);
     padding: 0.625rem;
-    background-color: var(--color-grey-7);
-    color: var(--color-grey-1);
+    background-color: var(--background-color-buttons);
+    color: var(--color-tiltle2);
     font-size: var(--font-3);
+}
+
+button:hover {
+    background-color: var(--background-color-buttons-hover);
 }
 
 /*Estilizando section de controle do filtro*/
@@ -30,7 +34,7 @@ button {
 }
 
 .title {
-    color: var(--color-grey-1);
+    color: var(--color-tiltle2);
     font-size: var(--font-2);
     font-weight: bold;
     margin-bottom: 1.875rem;
@@ -44,12 +48,18 @@ button {
     margin-bottom: 1.875rem;
 }
 
+.button__music--generes:focus {
+    background-color: var(--background-color-buttons-focus);
+    color: var(--color-text-focus);
+    border: 1px solid var(--color-boder);
+}
+
 .container__controls--filter {
     display: flex;
     justify-content: space-between;
     position: relative;
     font-size: var(--font-3);
-    color: var(--color-grey-1);
+    color: var(--color-tiltle2);
     margin-bottom: 6.25rem;
 }
 
@@ -65,14 +75,21 @@ input {
 .container__card {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     gap: 50px;
 }
 
 .card {
-    width: 300px;
+    width: 45%;
     height: 250px;
-    background-color: var(--color-grey-7);
-    padding: 0 0 var(--radius-1) var(--radius-1);
+    margin-bottom: 20px;
+    background-color: var(--background-color-card);
+    border-radius: var(--radius-1);
+    position: relative;
+}
+
+.card:hover {
+    background-color: var(--background-color-buttons);
 }
 
 .image__card {
@@ -82,13 +99,13 @@ input {
 }
 
 .information__product {
-    color: var(--color-grey-2);
+    color: var(--color-text-2);
     font-size: var(--font-3);
-    margin-left: 0.625rem;
+    margin: 0.5rem 0rem 0rem 0.625rem;
 }
 
 .title__product {
-    color: var(--color-grey-1);
+    color: var(--color-tiltle2);
     font-size: var(--font-2);
     font-weight: bold;
     margin: 1.5rem 0rem 1.5rem 0.625rem;
@@ -101,8 +118,14 @@ input {
 }
 
 .text__price {
-    color: var(--color-grey-1);
+    color: var(--color-tiltle2);
     font-size: var(--font-3);
     font-weight: bold;
     margin-left: 0.625rem;
+}
+
+.conteiner__button {
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
 }

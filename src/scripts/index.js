@@ -1,4 +1,5 @@
 import { products, categories } from './productsData.js'
+import {handleDarkMode} from './theme.js'
 
 /* Desenvolva sua lógica aqui ... */
 
@@ -15,7 +16,7 @@ function createCard(product) {
 
     const informationProduct = document.createElement('p')
     informationProduct.classList.add('information__product')
-    informationProduct.innerText = `${product.band}${product.year}`
+    informationProduct.innerText = `${product.band}   ${product.year}`
 
 
     const titleProduct = document.createElement('h2')
@@ -64,40 +65,53 @@ function rederCard(array) {
     return containerCard
 }
 
-function filteringCategory(products, categories) {
+function addEvents(products, categories) {
 
     const buttonMusicGenres = document.querySelectorAll('.button__music--generes')
+    const inputFilter = document.querySelector('#rangeInput')
+    const paragraph = document.querySelector('.filter__paragraph')
+
+    let filteredArray = products;
+    let categoryIndex = 0;
+    let inputValue = inputFilter.value;
 
     buttonMusicGenres.forEach(button => {
-        button.addEventListener('click', (element) => {
-            const travelingCategories = categories.findIndex(a => a === element.target.innerText)
-            const filterCategories = products.filter(a => a.category === travelingCategories)
 
-            if(travelingCategories === 0){
-               return rederCard(products) 
-            }else{
-                return rederCard(filterCategories)
+        button.addEventListener('click', (element) => {
+
+            categoryIndex = categories.findIndex(a => a === element.target.innerText)
+
+            if (categoryIndex === 0) {
+                filteredArray = products.filter(a => inputValue >= a.price)
+
+            } else {
+                filteredArray = products.filter(a => a.category === categoryIndex && inputValue >= a.price)
             }
+            return rederCard(filteredArray)
         })
     });
 
-}
+    inputFilter.addEventListener('input', (event) => {
+        inputValue = event.target.value
 
-function filterPrice(product){
-    const inputFilter= document.querySelector('#rangeInput')
+        paragraph.innerText = `Até R$ ${inputValue}`
 
-    inputFilter.addEventListener('input', () => {
-        const paragraph = document.querySelector('.filter__paragraph')
-        const productsFilter= product.filter((element) => element.price <= inputFilter.value)
+        if (categoryIndex === 0) {
 
-        paragraph.innerText= `Até R$ ${inputFilter.value}`
-        return rederCard(productsFilter)
+         filteredArray = products.filter((element) => element.price <= inputValue)
 
+        } else {
+
+         filteredArray = products.filter(a => a.category === categoryIndex && inputValue >= a.price)
+        }
+
+        return rederCard(filteredArray)
     })
 
 }
 
+
 rederButtons(categories)
 rederCard(products)
-filteringCategory(products, categories)
-filterPrice(products)
+addEvents(products, categories)
+handleDarkMode()
